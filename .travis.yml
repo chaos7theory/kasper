@@ -1,6 +1,8 @@
 dist: trusty
 sudo: required
-language: node_js
+language:
+    - node_js
+    - python
 node_js:
   - "6"
 services:
