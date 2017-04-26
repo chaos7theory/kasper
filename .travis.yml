@@ -5,6 +5,27 @@ node_js:
   - "6"
 services:
   - mongodb
+before_install:
+    - sudo apt-get update -qq
+    # Setup Conda
+    - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update -q conda
+    # Useful for debugging any issues with conda
+    - conda info -a
+install:
+    - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+    - conda install -q -c bokeh datashader
+    - source activate test-environment
+    # - python setup.py install
+    - npm install
 before_script:
     - mongoimport --db selene --collection images --drop test/db/db.images.test.json
     - mongoimport --db selene --collection image_angles --drop test/db/db.image_angles.test.json
