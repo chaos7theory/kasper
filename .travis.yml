@@ -23,9 +23,10 @@ before_install:
     # Useful for debugging any issues with conda
     - conda info -a
 install:
-    - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION --file=requirements.txt
-    # - conda install -q -c bokeh datashader
+    - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+    - conda install -q -c bokeh datashader
     - source activate test-environment
+    - pip install -r requirements.txt
     # - python setup.py install
     - npm install
 before_script:
