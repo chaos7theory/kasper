@@ -1,7 +1,6 @@
 appdirs==1.4.3
 colorcet==0.9.1
 cycler==0.10.0
-datashader==0.4.0
 datashape==0.5.2
 decorator==4.0.11
 enum34==1.1.6
