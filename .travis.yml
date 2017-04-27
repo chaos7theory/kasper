@@ -5,6 +5,8 @@ node_js:
   - "6"
 services:
   - mongodb
+env:
+    - TRAVIS_PYTHON_VERSION=2.7
 before_install:
     - sudo apt-get update -qq
     # Setup Conda
