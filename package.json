@@ -4,7 +4,8 @@
   "description": "KAguya Spectral Profiler ExploreR",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "node index.js"
   },
   "repository": {
@@ -41,6 +42,7 @@
     "main-bower-files": "^2.13.1",
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^10.3.2",
     "supertest": "^3.0.0",
     "uglify-js": "^2.8.21",
     "vinyl-paths": "^2.1.0"
